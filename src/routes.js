@@ -7,8 +7,12 @@ const RoutesApp = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/repositorio/:repositorio" element={<Repositorio />} />
+        <Route path="/" element={<Main />} exact />
+        <Route
+          path="/repositorio/:repositorio"
+          element={<Repositorio />}
+          exact
+        />
       </Routes>
     </BrowserRouter>
   );
