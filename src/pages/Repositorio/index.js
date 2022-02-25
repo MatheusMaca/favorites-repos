@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import { Container, Owner, Loading, BackButton } from "./styles";
+import { Container, Owner, Loading, BackButton, IssuesList } from "./styles";
 import { FaArrowLeft } from "react-icons/fa";
 import api from "../../services/api";
 
@@ -47,6 +47,25 @@ export default function Repositorio() {
         <h1>{repo.name}</h1>
         <p>{repo.description}</p>
       </Owner>
+      <IssuesList>
+        {issues.map((issue) => (
+          <li key={String(issue.id)}>
+            <img src={issue.user.avatar_url} alt={issue.user.login} />
+            <div>
+              <p>{issue.user.login}</p>
+              <strong>
+                <a href={issue.html_url} target="_blank" rel="noreferrer">
+                  {issue.title}
+                </a>
+                <br />
+                {issue.labels.map((label) => (
+                  <span key={String(label.id)}>{label.name}</span>
+                ))}
+              </strong>
+            </div>
+          </li>
+        ))}
+      </IssuesList>
     </Container>
   );
 }
